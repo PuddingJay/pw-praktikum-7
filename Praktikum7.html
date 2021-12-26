@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum 7 | Windu </title>
+</head>
+<script>
+    var kotaDiProvinsi  = {
+        Banten : ["Tangerang", "Tangerang Selatan", "Pandeglang", "Cilegon", "Serang"],
+        JawaBarat : ["Bandung", "Cianjur", "Cirebon", "Bogor", "Sukabumi"],
+        JawaTengah : ["Magelang", "Pekalongan", "Salatiga", "Semarang ", "Surakarata", "Tegal"],
+        SumateraSelatan : ["Ogan Ilir", "Palembang", "Pagar Alam", "Lubuk Linggau", "Prabumulih"],
+        SumateraUtara : ["Binjai", "Medan", "Pematansiantar", "Tanjungbalai", "Tebing Tinggi"]
+    }
+
+    function menu(value){
+        if(value.length==0) {
+            document.getElementById("kota").innerHTML = "<option></option>";
+        }
+        else {
+            var pilihKota = "";
+            for(kotaID in kotaDiProvinsi[value]) {
+                pilihKota+="<option>"+kotaDiProvinsi[value][kotaID]+"</option>";
+            }
+            document.getElementById("kota").innerHTML = pilihKota;
+        }
+    }
+
+    function tampil(){
+        var diProvinsi = document.getElementById("provinsi").value;
+        var diKota = document.getElementById("kota").value;
+        var keluaran = document.getElementById("output");
+        keluaran.innerText = "Pada Provinsi " + diProvinsi + " ada Kota " + diKota;
+    }
+    
+    function resetPilih() {
+        document.getElementById("provinsi").selectedIndex = 0;
+        document.getElementById("kota").selectedIndex = 0;
+    }
+
+    function darkMode() {  
+        var element = document.body;
+        element.classList.toggle("dark");
+    }
+</script>
+<body onload = "resetPilih()">
+    <center>
+        <div id= "header">
+            <h1> <font size= 5  > Muhammad Windu Aji | 105219036 </font></h1>
+        </div>
+
+        <img src="kisspng-flag-of-indonesia-vector-map-peta-indonesia-5b2dec9a4efca3.3484071315297363463235.png" alt="Peta Indonesia">
+            <br>
+            <select name="provinsi" id="provinsi" size="1" onchange="menu(this.value)">
+                <option value="" disabled selected>Pilih Provinsi</option>
+                <option value= "Banten">Banten</option>
+                <option value= "JawaBarat">Jawa Barat</option>
+                <option value= "JawaTengah">Jawa Tengah</option>
+                <option value= "SumateraSelatan">Sumatera Selatan</option>
+                <option value= "SumateraUtara">Sumatera Utara</option>
+            </select> 
+            <select name="kota" id="kota" size="1">
+                <option value="" disabled selected>Pilih Kota</option>
+                <option></option>
+            </select>
+            <br>
+            <br>
+            <button onclick="tampil()" class="tampil">Tampilkan</button>   
+            <p id="output"></p>
+        <br>
+        <button class="darkButton" onclick="darkMode()">DarkMode</button>
+    </center>
+    
+</body>
+</html>
